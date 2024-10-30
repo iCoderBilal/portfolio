@@ -17,24 +17,31 @@ const Footer = () => {
 
       <div className="flex flex-col items-center">
         <h1 className="heading lg:max-w-[45vw]">
-          Ready to take <span className="text-purple">your</span> digital
-          presence to the next level?
+          Get SolTok and Join the{" "}
+          <span className="text-purple"> Solana Revolution</span>
         </h1>
-        <p className="text-white-200 md:mt-10 my-5 text-center">
-          Reach out to me today and let&apos;s discuss how I can help you
-          achieve your goals.
+        <p className="text-white-200 md:mt-10 my-5 text-center lg:max-w-4xl">
+          Ready to experience the ultimate Solana social platform? Download
+          SolTok now and stay connected, informed, and in control of your
+          digital assets—all in one place.
         </p>
-        <a href="mailto:contact@jsmastery.pro">
-          <MagicButton
-            title="Let's get in touch"
-            icon={<FaLocationArrow />}
-            position="right"
-          />
-        </a>
+
+        <p className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80 my-4">
+          Download the App
+        </p>
+        <div className="flex gap-8">
+          <a>
+            <img src="/playstore.png" className="w-12" />
+          </a>
+
+          <a>
+            <img src="/app-store.png" className="w-12" />
+          </a>
+        </div>
       </div>
       <div className="flex mt-16 md:flex-row flex-col justify-between items-center">
         <p className="md:text-base text-sm md:font-normal font-light">
-          Copyright © 2024 Adrian Hajdin
+          Copyright © 2024 SOLTOK
         </p>
 
         <div className="flex items-center md:gap-3 gap-6">
