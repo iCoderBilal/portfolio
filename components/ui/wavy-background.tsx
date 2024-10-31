@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { createNoise3D } from "simplex-noise";
@@ -7,10 +8,10 @@ export const WavyBackground = ({
   children,
   className,
   containerClassName,
-  colors,
+  colors = ["#38bdf8", "#818cf8", "#c084fc", "#e879f9", "#22d3ee"],
   waveWidth,
   backgroundFill,
-  blur = 10,
+  blur = 7,
   speed = "fast",
   waveOpacity = 0.5,
   ...props
@@ -50,33 +51,26 @@ export const WavyBackground = ({
     canvas = canvasRef.current;
     ctx = canvas.getContext("2d");
     w = ctx.canvas.width = window.innerWidth;
-    h = ctx.canvas.height = window.innerHeight;
+    h = ctx.canvas.height = window.innerHeight * 0.5; // Set to 50% of window height
     ctx.filter = `blur(${blur}px)`;
     nt = 0;
     window.onresize = function () {
       w = ctx.canvas.width = window.innerWidth;
-      h = ctx.canvas.height = window.innerHeight;
+      h = ctx.canvas.height = window.innerHeight * 0.5; // Set to 50% of window height
       ctx.filter = `blur(${blur}px)`;
     };
     render();
   };
 
-  const waveColors = colors ?? [
-    "#38bdf8",
-    "#818cf8",
-    "#c084fc",
-    "#e879f9",
-    "#22d3ee",
-  ];
   const drawWave = (n: number) => {
     nt += getSpeed();
     for (i = 0; i < n; i++) {
       ctx.beginPath();
       ctx.lineWidth = waveWidth || 50;
-      ctx.strokeStyle = waveColors[i % waveColors.length];
+      ctx.strokeStyle = colors[i % colors.length];
       for (x = 0; x < w; x += 5) {
         var y = noise(x / 800, 0.3 * i, nt) * 100;
-        ctx.lineTo(x, y + h * 0.5); // adjust for height, currently at 50% of the container
+        ctx.lineTo(x, y + h * 0.5); // Keep this at 50% of the canvas height
       }
       ctx.stroke();
       ctx.closePath();
@@ -101,7 +95,6 @@ export const WavyBackground = ({
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-    // I'm sorry but i have got to support it on safari.
     setIsSafari(
       typeof window !== "undefined" &&
         navigator.userAgent.includes("Safari") &&
@@ -112,7 +105,7 @@ export const WavyBackground = ({
   return (
     <div
       className={cn(
-        "h-screen flex flex-col items-center justify-center",
+        "h-[50vh] flex flex-col items-center justify-center",
         containerClassName
       )}
     >
@@ -120,9 +113,7 @@ export const WavyBackground = ({
         className="absolute inset-0 z-0"
         ref={canvasRef}
         id="canvas"
-        style={{
-          ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
-        }}
+        style={{ height: "50vh" }}
       ></canvas>
       <div className={cn("relative z-10", className)} {...props}>
         {children}

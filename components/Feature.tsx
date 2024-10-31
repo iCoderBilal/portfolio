@@ -4,12 +4,16 @@ import { Button } from "./ui/MovingBorders";
 const Feature = () => {
   return (
     <div>
-      <div className="features" id="features">
+      <div className="features md:mt-16 mt-6 relative" id="features">
+        <img
+          src="/shadow.png"
+          className="absolute w-[500px] opacity-[0.4] z-[99] "
+        />
         <div className="features-container flex justify-between md:flex-nowrap flex-wrap">
           <div className="features-left md:basis-[43%] basis-[100%] min-h-[400px] bg-transparent">
             <img
               src="/vibleImg.png"
-              className="md:w-[80%] lg:w-[55%] w-[85%] mx-auto"
+              className="md:w-[80%] lg:w-[55%] w-[85%] mx-auto z-[999] relative"
             />
           </div>
           <div className="features-right md:basis-[52%] basis-[100%] min-h-[400px] bg-transparent text-left flex items-center">
