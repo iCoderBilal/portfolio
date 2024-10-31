@@ -11,23 +11,31 @@ import Experience from "@/components/Experience";
 import RecentProjects from "@/components/RecentProjects";
 import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import Feature from "@/components/Feature";
+import FAQ from "@/components/FAQ";
+import { Introduction } from "@/components/Introduction";
 
 const Home = () => {
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
-      <div className="max-w-7xl w-full">
+    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto">
+      <div className="w-full">
         <FloatingNav navItems={navItems} />
 
         <Hero />
-        <Feature />
-        <Experience />
+        <div className="relative">
+          <Introduction />
+        </div>
+        <div className="max-w-7xl mx-auto sm:px-10 px-5">
+          <Feature />
+          {/* <Experience /> */}
 
-        {/* <Grid />
+          {/* <Grid />
         <RecentProjects /> */}
-        <Clients />
-        {/* 
+          <Clients />
+          {/* 
         <Approach /> */}
-        <Footer />
+          <FAQ />
+          <Footer />
+        </div>
       </div>
     </main>
   );
